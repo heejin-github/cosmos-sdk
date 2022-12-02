@@ -57,7 +57,8 @@ func (s queryServer) GetRandom(ctx context.Context, _ *GetRandomRequest) (*GetRa
 
 	h := sha256.New()
 	validatorsHash := status.Block.Header.ValidatorsHash
-	io.WriteString(h, string(validatorsHash))
+	consensusHash := status.Block.Header.ConsensusHash
+	io.WriteString(h, string(append(validatorsHash, consensusHash...)))
 	var seed uint64 = binary.BigEndian.Uint64(h.Sum(nil))
 	rand.Seed(int64(seed))
 
