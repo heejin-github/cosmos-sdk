@@ -188,6 +188,8 @@
     - [GetLatestValidatorSetResponse](#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse)
     - [GetNodeInfoRequest](#cosmos.base.tendermint.v1beta1.GetNodeInfoRequest)
     - [GetNodeInfoResponse](#cosmos.base.tendermint.v1beta1.GetNodeInfoResponse)
+    - [GetRandomRequest](#cosmos.base.tendermint.v1beta1.GetRandomRequest)
+    - [GetRandomResponse](#cosmos.base.tendermint.v1beta1.GetRandomResponse)
     - [GetSyncingRequest](#cosmos.base.tendermint.v1beta1.GetSyncingRequest)
     - [GetSyncingResponse](#cosmos.base.tendermint.v1beta1.GetSyncingResponse)
     - [GetValidatorSetByHeightRequest](#cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest)
@@ -3065,6 +3067,31 @@ GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method.
 
 
 
+<a name="cosmos.base.tendermint.v1beta1.GetRandomRequest"></a>
+
+### GetRandomRequest
+GetRandomRequest is the request type for the Query/GetRandom RPC method.
+
+
+
+
+
+
+<a name="cosmos.base.tendermint.v1beta1.GetRandomResponse"></a>
+
+### GetRandomResponse
+GetRandomResponse is the response type for the Query/GetRandom RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `random` | [int64](#int64) |  |  |
+
+
+
+
+
+
 <a name="cosmos.base.tendermint.v1beta1.GetSyncingRequest"></a>
 
 ### GetSyncingRequest
@@ -3195,6 +3222,7 @@ Service defines the gRPC querier service for tendermint queries.
 | ----------- | ------------ | ------------- | ------------| ------- | -------- |
 | `GetNodeInfo` | [GetNodeInfoRequest](#cosmos.base.tendermint.v1beta1.GetNodeInfoRequest) | [GetNodeInfoResponse](#cosmos.base.tendermint.v1beta1.GetNodeInfoResponse) | GetNodeInfo queries the current node info. | GET|/cosmos/base/tendermint/v1beta1/node_info|
 | `GetSyncing` | [GetSyncingRequest](#cosmos.base.tendermint.v1beta1.GetSyncingRequest) | [GetSyncingResponse](#cosmos.base.tendermint.v1beta1.GetSyncingResponse) | GetSyncing queries node syncing. | GET|/cosmos/base/tendermint/v1beta1/syncing|
+| `GetRandom` | [GetRandomRequest](#cosmos.base.tendermint.v1beta1.GetRandomRequest) | [GetRandomResponse](#cosmos.base.tendermint.v1beta1.GetRandomResponse) | GetRandom queries node syncing. | GET|/cosmos/base/tendermint/v1beta1/random|
 | `GetLatestBlock` | [GetLatestBlockRequest](#cosmos.base.tendermint.v1beta1.GetLatestBlockRequest) | [GetLatestBlockResponse](#cosmos.base.tendermint.v1beta1.GetLatestBlockResponse) | GetLatestBlock returns the latest block. | GET|/cosmos/base/tendermint/v1beta1/blocks/latest|
 | `GetBlockByHeight` | [GetBlockByHeightRequest](#cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest) | [GetBlockByHeightResponse](#cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse) | GetBlockByHeight queries block for given height. | GET|/cosmos/base/tendermint/v1beta1/blocks/{height}|
 | `GetLatestValidatorSet` | [GetLatestValidatorSetRequest](#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequest) | [GetLatestValidatorSetResponse](#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse) | GetLatestValidatorSet queries latest validator-set. | GET|/cosmos/base/tendermint/v1beta1/validatorsets/latest|

@@ -21,6 +21,10 @@ service Service {
   rpc GetSyncing(GetSyncingRequest) returns (GetSyncingResponse) {
     option (google.api.http).get = "/cosmos/base/tendermint/v1beta1/syncing";
   }
+  // GetRandom queries node syncing.
+  rpc GetRandom(GetRandomRequest) returns (GetRandomResponse) {
+    option (google.api.http).get = "/cosmos/base/tendermint/v1beta1/random";
+  }
   // GetLatestBlock returns the latest block.
   rpc GetLatestBlock(GetLatestBlockRequest) returns (GetLatestBlockResponse) {
     option (google.api.http).get = "/cosmos/base/tendermint/v1beta1/blocks/latest";
@@ -103,6 +107,14 @@ message GetSyncingRequest {}
 // GetSyncingResponse is the response type for the Query/GetSyncing RPC method.
 message GetSyncingResponse {
   bool syncing = 1;
+}
+
+// GetRandomRequest is the request type for the Query/GetRandom RPC method.
+message GetRandomRequest {}
+
+// GetRandomResponse is the response type for the Query/GetRandom RPC method.
+message GetRandomResponse {
+  int64 random = 1;
 }
 
 // GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method.
