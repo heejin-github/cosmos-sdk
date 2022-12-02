@@ -2,6 +2,10 @@ package tmservice
 
 import (
 	"context"
+	"crypto/sha256"
+	"encoding/binary"
+	"io"
+	"math/rand"
 
 	gogogrpc "github.com/gogo/protobuf/grpc"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
@@ -41,6 +45,24 @@ func (s queryServer) GetSyncing(ctx context.Context, _ *GetSyncingRequest) (*Get
 	}
 	return &GetSyncingResponse{
 		Syncing: status.SyncInfo.CatchingUp,
+	}, nil
+}
+
+// GetRandom implements ServiceServer.GetRandom
+func (s queryServer) GetRandom(ctx context.Context, _ *GetRandomRequest) (*GetRandomResponse,error) {
+	status, err := getBlock(ctx, s.clientCtx, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	h := sha256.New()
+	validatorsHash := status.Block.Header.ValidatorsHash
+	io.WriteString(h, string(validatorsHash))
+	var seed uint64 = binary.BigEndian.Uint64(h.Sum(nil))
+	rand.Seed(int64(seed))
+
+	return &GetRandomResponse{
+		Random: rand.Int63(),
 	}, nil
 }
 
